@@ -5,7 +5,6 @@ import (
 
 	"github.com/sergeyyarin/otus_go_basic/hw02_fix_app/printer"
 	"github.com/sergeyyarin/otus_go_basic/hw02_fix_app/reader"
-	"github.com/sergeyyarin/otus_go_basic/hw02_fix_app/types"
 )
 
 func main() {
@@ -18,10 +17,7 @@ func main() {
 		path = "data.json"
 	}
 
-	var err error
-	var staff []types.Employee
-
-	staff, err = reader.ReadJSON(path)
+	staff, err := reader.ReadJSON(path)
 
 	if err != nil {
 		fmt.Println(err)
