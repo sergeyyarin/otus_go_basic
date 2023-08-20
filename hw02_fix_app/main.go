@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/fixme_my_friend/hw02_fix_app/printer"
-	"github.com/fixme_my_friend/hw02_fix_app/reader"
-	"github.com/fixme_my_friend/hw02_fix_app/types"
+	"github.com/sergeyyarin/otus_go_basic/hw02_fix_app/printer"
+	"github.com/sergeyyarin/otus_go_basic/hw02_fix_app/reader"
+	"github.com/sergeyyarin/otus_go_basic/hw02_fix_app/types"
 	"fmt"
 )
 
