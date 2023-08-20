@@ -1,10 +1,11 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/sergeyyarin/otus_go_basic/hw02_fix_app/printer"
 	"github.com/sergeyyarin/otus_go_basic/hw02_fix_app/reader"
 	"github.com/sergeyyarin/otus_go_basic/hw02_fix_app/types"
-	"fmt"
 )
 
 func main() {
