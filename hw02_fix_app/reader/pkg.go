@@ -28,5 +28,5 @@ func ReadJSON(filePath string) ([]types.Employee, error) {
 
 	res := data
 
-	return res, nil
+	return res, err
 }
