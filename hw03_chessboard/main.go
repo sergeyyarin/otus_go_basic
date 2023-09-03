@@ -3,40 +3,23 @@ package main
 import (
 	"errors"
 	"fmt"
+	"os"
+
+	"github.com/sergeyyarin/otus_go_basic/hw03_chessboard/board"
 )
 
-func buildRow(length int) (row string, err error) {
-	if valid := length > 0; !valid {
-		err = errors.New("row len is not valid")
-		return row, err
-	}
-	if even := length%2 == 0; !even {
-		err = errors.New("row len is not even")
-		return row, err
-	}
-
-	const (
-		space = " "
-		hash  = "#"
-	)
-
-	for i := 0; i <= length; i++ {
-		if i%2 == 0 {
-			row += hash
-		} else {
-			row += space
-		}
-	}
-
-	return row, err
-}
-
 func main() {
-	length := 8
-	row, err := buildRow(length)
-	if err != nil {
-		fmt.Println("Error: ", err)
-	} else {
-		fmt.Println("Board: ", row)
+	size := 8
+
+	if valid := size > 0; !valid {
+		fmt.Println(errors.New("size is not valid"))
+		os.Exit(1)
 	}
+
+	if even := size%2 == 0; !even {
+		fmt.Println(errors.New("size is not even"))
+		os.Exit(1)
+	}
+
+	board.Build(size)
 }
