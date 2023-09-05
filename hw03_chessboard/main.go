@@ -9,7 +9,14 @@ import (
 )
 
 func main() {
-	size := 8
+	var size int
+
+	fmt.Print("Enter the size of your board: ")
+
+	if _, err := fmt.Scanf("%d", &size); err != nil {
+		fmt.Println("can't read board size: ", err)
+		os.Exit(1)
+	}
 
 	if valid := size > 0; !valid {
 		fmt.Println(errors.New("size is not valid"))
