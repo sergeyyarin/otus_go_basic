@@ -18,12 +18,12 @@ func main() {
 		os.Exit(1)
 	}
 
-	if valid := size > 0; !valid {
+	if size <= 0 {
 		fmt.Println(errors.New("size is not valid"))
 		os.Exit(1)
 	}
 
-	if even := size%2 == 0; !even {
+	if size%2 != 0 {
 		fmt.Println(errors.New("size is not even"))
 		os.Exit(1)
 	}

@@ -9,12 +9,8 @@ const (
 	hash = "#"
 )
 
-func isEven(v int) bool {
-	return v%2 == 0
-}
-
 func isOdd(v int) bool {
-	return !isEven(v)
+	return v%2 != 0
 }
 
 func getOddValue(index int) string {
@@ -25,7 +21,7 @@ func getOddValue(index int) string {
 }
 
 func getEvenValue(index int) string {
-	if isEven(index) {
+	if !isOdd(index) {
 		return unsc
 	}
 	return hash
