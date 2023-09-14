@@ -1,9 +1,9 @@
 package book
 
-func newId() func() int {
-	var id int = 0
+func newID() func() int {
+	var id int
 	return func() int {
-		id += 1
+		id++
 		return id
 	}
 }
@@ -19,7 +19,7 @@ type Book struct {
 
 func NewBook(title, author string, year, size int, rate float64) Book {
 	return Book{
-		id:     newId()(),
+		id:     newID()(),
 		title:  title,
 		author: author,
 		year:   year,
