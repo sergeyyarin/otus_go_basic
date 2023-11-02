@@ -1,5 +1,7 @@
 package book
 
+import "errors"
+
 var id int
 
 func newID() func() int {
@@ -80,26 +82,39 @@ type BookComparator struct {
 	Rhs  *Book
 }
 
-func (c *BookComparator) Compare() *Book {
+func NewBookComparator(mode CompareMode, lhs *Book, rhs *Book) *BookComparator {
+	return &BookComparator{
+		Mode: mode,
+		Lhs:  lhs,
+		Rhs:  rhs,
+	}
+}
+
+func (c *BookComparator) Compare() (*Book, error) {
+	var res *Book
+	var err error = nil
 	switch c.Mode {
 	case Year:
-		if c.Lhs.year > c.Rhs.year {
-			return c.Lhs
+		if c.Lhs.GetYear() > c.Rhs.GetYear() {
+			res = c.Lhs
 		} else {
-			return c.Rhs
+			res = c.Rhs
 		}
 	case Size:
-		if c.Lhs.size > c.Rhs.size {
-			return c.Lhs
+		if c.Lhs.GetSize() > c.Rhs.GetSize() {
+			res = c.Lhs
 		} else {
-			return c.Rhs
+			res = c.Rhs
 		}
 	case Rate:
-		if c.Lhs.rate > c.Rhs.rate {
-			return c.Lhs
+		if c.Lhs.GetRate() > c.Rhs.GetRate() {
+			res = c.Lhs
 		} else {
-			return c.Rhs
+			res = c.Rhs
 		}
+	default:
+		res = nil
+		err = errors.New("unknown comparison mode")
 	}
-	return nil
+	return res, err
 }

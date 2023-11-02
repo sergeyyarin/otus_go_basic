@@ -7,11 +7,13 @@ import (
 )
 
 func compareBooks(lhs *book.Book, rhs *book.Book, mode book.CompareMode) *book.Book {
-	compare := book.BookComparator{Mode: mode, Lhs: lhs, Rhs: rhs}
-	if res := compare.Compare(); res != nil {
-		return res
+	cmp := book.NewBookComparator(mode, lhs, rhs)
+	res, err := cmp.Compare()
+	if err != nil {
+		res = nil
+		fmt.Println(err)
 	}
-	return nil
+	return res
 }
 
 func main() {
