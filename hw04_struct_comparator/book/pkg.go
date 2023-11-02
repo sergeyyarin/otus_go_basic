@@ -51,27 +51,27 @@ func (b *Book) SetRate(newRate float32) {
 	b.rate = newRate
 }
 
-func (b *Book) GetID() int {
+func (b *Book) ID() int {
 	return b.id
 }
 
-func (b *Book) GetTitle() string {
+func (b *Book) Title() string {
 	return b.title
 }
 
-func (b *Book) GetAuthor() string {
+func (b *Book) Author() string {
 	return b.author
 }
 
-func (b *Book) GetYear() int {
+func (b *Book) Year() int {
 	return b.year
 }
 
-func (b *Book) GetSize() int {
+func (b *Book) Size() int {
 	return b.size
 }
 
-func (b *Book) GetRate() float32 {
+func (b *Book) Rate() float32 {
 	return b.rate
 }
 
@@ -106,11 +106,11 @@ func (c *Comparator) Compare(lhs *Book, rhs *Book) bool {
 	var res bool
 	switch c.Mode {
 	case Year:
-		res = c.CompareInt(lhs.GetYear(), rhs.GetYear())
+		res = c.CompareInt(lhs.Year(), rhs.Year())
 	case Size:
-		res = c.CompareInt(lhs.GetSize(), rhs.GetSize())
+		res = c.CompareInt(lhs.Size(), rhs.Size())
 	case Rate:
-		res = c.compareFloat(lhs.GetRate(), rhs.GetRate())
+		res = c.compareFloat(lhs.Rate(), rhs.Rate())
 	}
 	return res
 }
