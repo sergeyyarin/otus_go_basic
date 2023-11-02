@@ -83,8 +83,10 @@ const (
 	Rate
 )
 
-type CompareMethodInt func(int, int) bool
-type CompareMethodFloat32 func(float32, float32) bool
+type (
+	CompareMethodInt     func(int, int) bool
+	CompareMethodFloat32 func(float32, float32) bool
+)
 
 type Comparator struct {
 	Mode         CompareMode
