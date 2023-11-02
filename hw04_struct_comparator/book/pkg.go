@@ -1,7 +1,5 @@
 package book
 
-import "errors"
-
 var id int
 
 type Book struct {
@@ -85,38 +83,32 @@ const (
 	Rate
 )
 
+type CompareMethodInt func(int, int) bool
+type CompareMethodFloat32 func(float32, float32) bool
+
 type Comparator struct {
-	Mode CompareMode
-	LHS  *Book
-	RHS  *Book
+	Mode         CompareMode
+	CompareInt   CompareMethodInt
+	compareFloat CompareMethodFloat32
 }
 
-func NewComparator(mode CompareMode, lhs *Book, rhs *Book) *Comparator {
+func NewComparator(mode CompareMode) *Comparator {
 	return &Comparator{
-		Mode: mode,
-		LHS:  lhs,
-		RHS:  rhs,
+		Mode:         mode,
+		CompareInt:   func(i1, i2 int) bool { return i1 > i2 },
+		compareFloat: func(f1, f2 float32) bool { return f1 > f2 },
 	}
 }
 
-func (c *Comparator) Compare() (bool, error) {
+func (c *Comparator) Compare(lhs *Book, rhs *Book) bool {
 	var res bool
-	var err error
 	switch c.Mode {
 	case Year:
-		if c.LHS.GetYear() > c.RHS.GetYear() {
-			res = true
-		}
+		res = c.CompareInt(lhs.GetYear(), rhs.GetYear())
 	case Size:
-		if c.LHS.GetSize() > c.RHS.GetSize() {
-			res = true
-		}
+		res = c.CompareInt(lhs.GetSize(), rhs.GetSize())
 	case Rate:
-		if c.LHS.GetRate() > c.RHS.GetRate() {
-			res = true
-		}
-	default:
-		err = errors.New("unknown comparison mode")
+		res = c.compareFloat(lhs.GetRate(), rhs.GetRate())
 	}
-	return res, err
+	return res
 }
