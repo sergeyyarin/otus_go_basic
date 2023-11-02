@@ -1,5 +1,14 @@
 package book
 
+var id int
+
+func newID() func() int {
+	return func() int {
+		id++
+		return id
+	}
+}
+
 type Book struct {
 	id     int
 	title  string
