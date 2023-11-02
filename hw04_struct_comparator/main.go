@@ -10,7 +10,6 @@ func compareBooks(lhs *book.Book, rhs *book.Book, mode book.CompareMode) *book.B
 	cmp := book.NewBookComparator(mode, lhs, rhs)
 	res, err := cmp.Compare()
 	if err != nil {
-		res = nil
 		fmt.Println(err)
 	}
 	return res
