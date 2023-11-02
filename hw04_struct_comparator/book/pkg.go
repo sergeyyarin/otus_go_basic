@@ -2,15 +2,6 @@ package book
 
 import "errors"
 
-var id int
-
-func newID() func() int {
-	return func() int {
-		id++
-		return id
-	}
-}
-
 type Book struct {
 	id     int
 	title  string
@@ -76,41 +67,41 @@ const (
 	Rate
 )
 
-type BookComparator struct {
+type Comparator struct {
 	Mode CompareMode
-	Lhs  *Book
-	Rhs  *Book
+	LHS  *Book
+	RHS  *Book
 }
 
-func NewBookComparator(mode CompareMode, lhs *Book, rhs *Book) *BookComparator {
-	return &BookComparator{
+func NewComparator(mode CompareMode, lhs *Book, rhs *Book) *Comparator {
+	return &Comparator{
 		Mode: mode,
-		Lhs:  lhs,
-		Rhs:  rhs,
+		LHS:  lhs,
+		RHS:  rhs,
 	}
 }
 
-func (c *BookComparator) Compare() (*Book, error) {
+func (c *Comparator) Compare() (*Book, error) {
 	var res *Book
-	var err error = nil
+	var err error
 	switch c.Mode {
 	case Year:
-		if c.Lhs.GetYear() > c.Rhs.GetYear() {
-			res = c.Lhs
+		if c.LHS.GetYear() > c.RHS.GetYear() {
+			res = c.LHS
 		} else {
-			res = c.Rhs
+			res = c.RHS
 		}
 	case Size:
-		if c.Lhs.GetSize() > c.Rhs.GetSize() {
-			res = c.Lhs
+		if c.LHS.GetSize() > c.RHS.GetSize() {
+			res = c.LHS
 		} else {
-			res = c.Rhs
+			res = c.RHS
 		}
 	case Rate:
-		if c.Lhs.GetRate() > c.Rhs.GetRate() {
-			res = c.Lhs
+		if c.LHS.GetRate() > c.RHS.GetRate() {
+			res = c.LHS
 		} else {
-			res = c.Rhs
+			res = c.RHS
 		}
 	default:
 		res = nil

@@ -7,7 +7,7 @@ import (
 )
 
 func compareBooks(lhs *book.Book, rhs *book.Book, mode book.CompareMode) *book.Book {
-	cmp := book.NewBookComparator(mode, lhs, rhs)
+	cmp := book.NewComparator(mode, lhs, rhs)
 	res, err := cmp.Compare()
 	if err != nil {
 		fmt.Println(err)
