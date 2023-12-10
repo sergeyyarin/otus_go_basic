@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/sergeyyarin/otus_go_basic/tree/hw05_shapes/hw05_shapes/internal/shape"
+	"github.com/sergeyyarin/otus_go_basic/hw05_shapes/internal/shape"
 )
 
 func calculateArea(s any) (float32, error) {
