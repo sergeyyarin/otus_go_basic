@@ -1,5 +1,7 @@
 package shape
 
+import "fmt"
+
 type Rectangle struct {
 	length float32
 	width  float32
@@ -21,6 +23,10 @@ func (r Rectangle) Width() float32 {
 	return r.width
 }
 
-func (r *Rectangle) Area() float32 {
+func (r Rectangle) Area() float32 {
 	return r.length * r.width
+}
+
+func (r Rectangle) String() string {
+	return fmt.Sprintf("Rectangle: length %.f, width %.f", r.length, r.width)
 }

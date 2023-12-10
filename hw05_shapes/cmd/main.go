@@ -7,16 +7,7 @@ import (
 )
 
 func calculateArea(s any) (float32, error) {
-	if v, ok := s.(shape.Circle); ok {
-		fmt.Printf("Circe: radius %f\n", v.Radius())
-		return v.Area(), nil
-	}
-	if v, ok := s.(shape.Rectangle); ok {
-		fmt.Printf("Rectangle: length %f, width %f\n", v.Length(), v.Width())
-		return v.Area(), nil
-	}
-	if v, ok := s.(shape.Triangle); ok {
-		fmt.Printf("Triangle: base %f, height %f\n", v.Base(), v.Height())
+	if v, ok := s.(shape.Shape); ok {
 		return v.Area(), nil
 	}
 	return 0, fmt.Errorf("interface Shape is not implemented for the type")
@@ -38,13 +29,14 @@ func main() {
 
 	var i int
 
-	shapes = append(shapes, c, r, t, i)
+	shapes = append(shapes, r, c, t, i)
 
 	for _, shape := range shapes {
 		if area, err := calculateArea(shape); err != nil {
 			fmt.Println(err)
 		} else {
-			fmt.Println("Area: ", area)
+			fmt.Println(shape)
+			fmt.Println("Area:", area)
 		}
 	}
 }

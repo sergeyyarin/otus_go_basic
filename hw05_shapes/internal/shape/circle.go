@@ -1,5 +1,7 @@
 package shape
 
+import "fmt"
+
 const (
 	Pi = 3.1415
 )
@@ -18,4 +20,8 @@ func (c Circle) Radius() float32 {
 
 func (c Circle) Area() float32 {
 	return Pi * (c.radius * c.radius)
+}
+
+func (c Circle) String() string {
+	return fmt.Sprintf("Circle: radius %.f", c.radius)
 }
