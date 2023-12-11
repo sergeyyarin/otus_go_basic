@@ -4,7 +4,6 @@ import (
 	"testing"
 
 	"github.com/sergeyyarin/otus_go_basic/hw06_testing/book"
-
 	"github.com/stretchr/testify/require"
 )
 
