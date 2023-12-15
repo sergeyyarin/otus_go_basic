@@ -57,6 +57,9 @@ func TestJsonAppReader(t *testing.T) {
 }
 
 func TestJsonAppPrinter(t *testing.T) {
+	const (
+		printed = "User ID: 10; Age: 25; Name: Rob; Department ID: 3; User ID: 11; Age: 30; Name: George; Department ID: 2; "
+	)
 	testCases := []struct {
 		desc     string
 		input    []types.Employee
@@ -83,7 +86,7 @@ func TestJsonAppPrinter(t *testing.T) {
 					DepartmentID: 2,
 				},
 			},
-			expected: "User ID: 10; Age: 25; Name: Rob; Department ID: 3; User ID: 11; Age: 30; Name: George; Department ID: 2; ",
+			expected: printed,
 		},
 	}
 	for _, tC := range testCases {
