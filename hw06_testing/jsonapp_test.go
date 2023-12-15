@@ -4,6 +4,7 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
+	"github.com/sergeyyarin/otus_go_basic/hw06_testing/jsonapp/printer"
 	"github.com/sergeyyarin/otus_go_basic/hw06_testing/jsonapp/reader"
 	"github.com/sergeyyarin/otus_go_basic/hw06_testing/jsonapp/types"
 	"github.com/stretchr/testify/require"
@@ -11,14 +12,14 @@ import (
 
 func TestJsonAppReader(t *testing.T) {
 	testCases := []struct {
-		desc string
-		file string
-		data []types.Employee
+		desc     string
+		file     string
+		expected []types.Employee
 	}{
 		{
 			desc: "ValidFilePath",
 			file: "jsonapp/data.json",
-			data: []types.Employee{
+			expected: []types.Employee{
 				{
 					UserID:       10,
 					Age:          25,
@@ -34,15 +35,15 @@ func TestJsonAppReader(t *testing.T) {
 			},
 		},
 		{
-			desc: "InvalidFilePath",
-			file: "nowhere/data.json",
-			data: []types.Employee{},
+			desc:     "InvalidFilePath",
+			file:     "nowhere/data.json",
+			expected: nil,
 		},
 	}
 	for _, tC := range testCases {
 		t.Run(tC.desc, func(t *testing.T) {
 			actual, err := reader.ReadJSON(tC.file)
-			require.True(t, cmp.Equal(tC.data, actual))
+			require.True(t, cmp.Equal(tC.expected, actual))
 			switch tC.desc {
 			case "ValidFilePath":
 				require.NoError(t, err)
@@ -51,6 +52,44 @@ func TestJsonAppReader(t *testing.T) {
 			default:
 				require.Fail(t, "unknown case")
 			}
+		})
+	}
+}
+
+func TestJsonAppPrinter(t *testing.T) {
+	testCases := []struct {
+		desc     string
+		input    []types.Employee
+		expected string
+	}{
+		{
+			desc:     "EmptyInput",
+			input:    []types.Employee{},
+			expected: "",
+		},
+		{
+			desc: "ValidInput",
+			input: []types.Employee{
+				{
+					UserID:       10,
+					Age:          25,
+					Name:         "Rob",
+					DepartmentID: 3,
+				},
+				{
+					UserID:       11,
+					Age:          30,
+					Name:         "George",
+					DepartmentID: 2,
+				},
+			},
+			expected: "User ID: 10; Age: 25; Name: Rob; Department ID: 3; User ID: 11; Age: 30; Name: George; Department ID: 2; ",
+		},
+	}
+	for _, tC := range testCases {
+		t.Run(tC.desc, func(t *testing.T) {
+			actual := printer.PrintStaff(tC.input)
+			require.Equal(t, tC.expected, actual)
 		})
 	}
 }
