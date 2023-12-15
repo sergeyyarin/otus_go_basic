@@ -12,12 +12,12 @@ import (
 func ReadJSON(filePath string) ([]types.Employee, error) {
 	f, err := os.Open(filePath)
 	if err != nil {
-		return nil, fmt.Errorf("%v", err)
+		return nil, fmt.Errorf("%w", err)
 	}
 
 	bytes, err := io.ReadAll(f)
 	if err != nil {
-		return nil, fmt.Errorf("%v", err)
+		return nil, fmt.Errorf("%w", err)
 	}
 
 	var data []types.Employee
