@@ -1,8 +1,8 @@
 package binarysearch
 
-func BinarySearch(s []int, v int) bool {
+func BinarySearch(s []int, v int) int {
 	if len(s) == 0 {
-		return false
+		return -1
 	}
 
 	b, e := 0, len(s)
@@ -18,8 +18,8 @@ func BinarySearch(s []int, v int) bool {
 	}
 
 	if b == len(s) || s[b] != v {
-		return false
+		return -1
 	}
 
-	return true
+	return b
 }
