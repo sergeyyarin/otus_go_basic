@@ -1,6 +1,7 @@
 package binarysearch
 
 import (
+	"slices"
 	"testing"
 
 	"github.com/stretchr/testify/require"
@@ -26,6 +27,7 @@ func TestBinarySearch(t *testing.T) {
 	}
 	for test, tc := range testCases {
 		t.Run(test, func(t *testing.T) {
+			slices.Sort(tc.collection)
 			found := BinarySearch(tc.collection, tc.value)
 			switch test {
 			case "empty_collection":

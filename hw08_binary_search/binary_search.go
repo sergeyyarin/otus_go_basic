@@ -1,16 +1,8 @@
 package binarysearch
 
-import (
-	"slices"
-)
-
 func BinarySearch(s []int, v int) bool {
 	if len(s) == 0 {
 		return false
-	}
-
-	if !slices.IsSorted(s) {
-		slices.Sort(s)
 	}
 
 	b, e := 0, len(s)
